@@ -26,6 +26,7 @@
 \definecolor{purple}{HTML}{D3A4F9}
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
+\definecolor{dred}{HTML}{A52A2A}
 
 \ifdefined\@cv@print
   \colorlet{green}{gray}
@@ -46,17 +47,41 @@
 % Fonts %
 %%%%%%%%%
 
+% \RequirePackage[quiet]{fontspec}
+% \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
+% 
+% \newfontfamily\bodyfont[]{Helvetica Neue}
+% \newfontfamily\thinfont[]{Helvetica Neue UltraLight}
+% \newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
+% 
+% \defaultfontfeatures{Mapping=tex-text}
+% \setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
+% 
+% \setmathfont{XITS Math}
+
+%%% modified by Karol Kozioł for ShareLaTex use
 \RequirePackage[quiet]{fontspec}
 \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 
-\newfontfamily\bodyfont[]{Helvetica Neue}
-\newfontfamily\thinfont[]{Helvetica Neue UltraLight}
-\newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
+\newfontfamily\bodyfont
+[BoldFont=texgyreheros-bold.otf,
+ItalicFont=texgyreheros-italic.otf,
+BoldItalicFont=texgyreheros-bolditalic.otf]
+{texgyreheros-regular.otf}
+\newfontfamily\thinfont[]{Lato-Hairline.ttf}
+\newfontfamily\headingfont[]{texgyreheros-bold.otf}
 
 \defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
+\setmainfont
+[Mapping=tex-text, Color=textcolor,
+BoldFont=texgyreheros-bold.otf,
+ItalicFont=texgyreheros-italic.otf,
+BoldItalicFont=texgyreheros-bolditalic.otf
+]
+{texgyreheros-regular.otf}
 
-\setmathfont{XITS Math}
+\setmathfont{texgyreheros-regular.otf}
+%%%
 
 %%%%%%%%%%
 % Header %
@@ -101,6 +126,7 @@
         red\or%
         orange\or%
         green\or%
+        dred\or%
         purple\else%
         headercolor\fi%
     } #1#2#3%
@@ -130,11 +156,14 @@
 % List environment %
 %%%%%%%%%%%%%%%%%%%%
 
+\RequirePackage{longtable}
+\RequirePackage{tabu}
+
 \setlength{\tabcolsep}{0pt}
 \newenvironment{entrylist}{%
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+\begin{longtabu} to \textwidth {@{\extracolsep{\fill}}ll}
 }{%
-  \end{tabular*}
+  \end{longtabu}
 }
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
